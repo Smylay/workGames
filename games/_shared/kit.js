@@ -204,6 +204,15 @@
     const el = h('div', { class: 'kit-overlay', hidden: true }, panel);
     root.append(el);
 
+    // Enter while an option pill has focus should start the game, not re-select the pill.
+    panel.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' || !event.target.classList.contains('kit-seg__btn')) return;
+      const primary = panel.querySelector('.btn--primary');
+      if (!primary) return;
+      event.preventDefault();
+      primary.click();
+    });
+
     function optionGroup({ id, label, choices, value }, values) {
       values[id] = choices.some((choice) => choice.value === value) ? value : choices[0].value;
       const group = h('div', { class: 'kit-seg', role: 'radiogroup', 'aria-label': label });
