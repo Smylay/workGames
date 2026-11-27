@@ -1,0 +1,205 @@
+/* Sudoku. Everything is scoped under sd- classes. */
+.sd {
+  --sd-cell: min(calc((94vw - 12px) / 9), calc((100vh - 250px) / 9), 56px);
+  --sd-accent: #ffd166;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.sd-grid {
+  display: grid;
+  grid-template-columns: repeat(9, var(--sd-cell));
+  padding: 3px;
+  border-radius: 8px;
+  background: #9fb3c8;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  transition: filter 0.2s;
+}
+
+.sd-grid.is-hidden .sd-cell {
+  color: transparent;
+}
+
+.sd-grid.is-solved {
+  background: var(--positive);
+}
+
+.sd-cell {
+  display: grid;
+  place-items: center;
+  width: var(--sd-cell);
+  height: var(--sd-cell);
+  padding: 0;
+  border: 0;
+  border-right: 1px solid #415a77;
+  border-bottom: 1px solid #415a77;
+  background: #0f1a2e;
+  color: var(--sd-accent);
+  font-size: calc(var(--sd-cell) * 0.52);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.sd-cell[data-col="2"],
+.sd-cell[data-col="5"] {
+  border-right: 3px solid #9fb3c8;
+}
+
+.sd-cell[data-row="2"],
+.sd-cell[data-row="5"] {
+  border-bottom: 3px solid #9fb3c8;
+}
+
+.sd-cell[data-col="8"] {
+  border-right: 0;
+}
+
+.sd-cell[data-row="8"] {
+  border-bottom: 0;
+}
+
+.sd-cell.is-given {
+  color: #e0e6f0;
+  font-weight: 800;
+}
+
+.sd-cell.is-peer {
+  background: #16243d;
+}
+
+.sd-cell.is-same {
+  background: #2b3a5c;
+}
+
+.sd-cell.is-selected {
+  background: #3d4f78;
+  box-shadow: inset 0 0 0 2px var(--sd-accent);
+}
+
+.sd-cell.is-conflict {
+  color: #ff6b6b;
+}
+
+.sd-cell.is-conflict.is-selected,
+.sd-cell.is-conflict.is-same {
+  background: #5a2530;
+}
+
+.sd-cell.is-wrong {
+  animation: sd-shake 0.3s ease;
+}
+
+.sd-cell.is-hinted {
+  animation: sd-flash 0.8s ease;
+}
+
+.sd-cell:focus-visible {
+  outline: none;
+}
+
+.sd-notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 92%;
+  height: 92%;
+  color: #8fa3c7;
+  font-size: calc(var(--sd-cell) * 0.24);
+  font-weight: 600;
+}
+
+.sd-notes span {
+  display: grid;
+  place-items: center;
+}
+
+.sd-grid.is-noting .sd-cell.is-selected {
+  box-shadow: inset 0 0 0 2px #8fa3c7;
+}
+
+.sd-pad {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 6px;
+  width: calc(var(--sd-cell) * 9 + 6px);
+}
+
+.sd-key {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: calc(var(--sd-cell) * 0.95);
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: #1f2d4d;
+  color: #fff;
+  font-size: calc(var(--sd-cell) * 0.5);
+  font-weight: 700;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.sd-key:hover {
+  background: #2e4170;
+}
+
+.sd-key.is-done {
+  opacity: 0.35;
+}
+
+.sd-left {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  color: var(--text-muted);
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.sd-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.sd-tool {
+  padding: 0.45em 1em;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.sd-tool:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.sd-tool.is-on {
+  border-color: var(--sd-accent);
+  background: var(--sd-accent);
+  color: #000;
+}
+
+.sd-tool:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@keyframes sd-shake {
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes sd-flash {
+  from {
+    background: var(--positive);
+  }
+}
