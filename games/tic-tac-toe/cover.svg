@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<defs><radialGradient id="bg" cx="50%" cy="50%" r="80%"><stop offset="0" stop-color="#2a0e4a"/><stop offset="1" stop-color="#07020f"/></radialGradient>
+     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="glowBig" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient></defs>
+<rect width="640" height="360" fill="url(#bg)"/>
+     <g opacity=".14" stroke-width="8" stroke-linecap="round" fill="none">
+       <path d="M70 70l40 40M110 70l-40 40" stroke="#ff2e88"/>
+       <circle cx="560" cy="90" r="26" stroke="#2ee6ff"/>
+       <circle cx="96" cy="270" r="20" stroke="#2ee6ff"/>
+       <path d="M530 250l36 36M566 250l-36 36" stroke="#ff2e88"/>
+     </g>
+     <g stroke="#b06cff" stroke-width="7" stroke-linecap="round" filter="url(#glow)">
+       <line x1="280" y1="66" x2="280" y2="294"/><line x1="360" y1="66" x2="360" y2="294"/>
+       <line x1="206" y1="140" x2="434" y2="140"/><line x1="206" y1="220" x2="434" y2="220"/>
+     </g>
+     <path d="M218 78L262 122M262 78L218 122" stroke="#ff2e88" stroke-width="10" stroke-linecap="round" filter="url(#glow)"/><circle cx="400" cy="100" r="24" fill="none" stroke="#2ee6ff" stroke-width="10" filter="url(#glow)"/><circle cx="240" cy="180" r="24" fill="none" stroke="#2ee6ff" stroke-width="10" filter="url(#glow)"/><path d="M298 158L342 202M342 158L298 202" stroke="#ff2e88" stroke-width="10" stroke-linecap="round" filter="url(#glow)"/><circle cx="320" cy="260" r="24" fill="none" stroke="#2ee6ff" stroke-width="10" filter="url(#glow)"/><path d="M378 238L422 282M422 238L378 282" stroke="#ff2e88" stroke-width="10" stroke-linecap="round" filter="url(#glow)"/>
+     <line x1="218" y1="78" x2="422" y2="282" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".95" filter="url(#glowBig)"/>
+<rect width="640" height="360" fill="url(#vig)"/>
+</svg>
