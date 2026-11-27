@@ -79,6 +79,23 @@ WorkGames.registerGame('my-game', {
 
 `registerGame` hands the framework your game object. The framework calls `mount` each time the player presses Play, and calls the function `mount` returns when they leave the game. Hooking listeners to `ctx.signal` and returning a cleanup means nothing keeps running in the background after they go back to the menu.
 
+### Shared game kit
+
+`WorkGames.kit` (`games/_shared/kit.js`) gives every game the same look and controls. Use it rather than writing your own:
+
+| Helper | What it does |
+| --- | --- |
+| `kit.overlay(root)` | Start, pause and game-over panel with buttons, stats and option pickers (mode, difficulty) |
+| `kit.hud(root, items)` | Score / time readouts in the top-right corner |
+| `kit.viewport(root, signal, { width, height })` | Canvas with a fixed-size world scaled to fit any screen |
+| `kit.loop(signal, step)` | Animation loop that calls `step(dt)` every frame and stops when the game closes |
+| `kit.keyboard(signal, onKey)` / `kit.swipe(el, signal, fn)` | Keyboard and touch input |
+| `kit.screen(root, ...children)` | Centred layout for board/card games built from HTML |
+| `kit.css('games/my-game/style.css')` | Load a stylesheet for your game (`await` it in `mount`) |
+| `kit.best(storage, key, value)` | Save best scores / times |
+
+`games/_template/game.js` uses most of these.
+
 The rules exist because the page runs straight from disk:
 
 - **Plain scripts only, no `import`/`export`.** Browsers refuse to load ES modules from `file://`.
