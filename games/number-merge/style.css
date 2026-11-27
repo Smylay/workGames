@@ -1,0 +1,156 @@
+/* Number Merge. Everything is scoped under nm- classes. */
+.nm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nm-board {
+  --gap: clamp(6px, 1.4vmin, 12px);
+  --size: min(88vw, calc(100vh - 200px), 520px);
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  padding: var(--gap);
+  border-radius: 14px;
+  background: #1b1533;
+  box-shadow: 0 0 60px rgba(123, 47, 247, 0.35);
+  touch-action: none;
+}
+
+.nm-board.is-bump {
+  animation: nm-bump 0.18s ease;
+}
+
+.nm-cells {
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  gap: var(--gap);
+  width: 100%;
+  height: 100%;
+}
+
+.nm-cells span {
+  border-radius: 8px;
+  background: #2a2347;
+}
+
+.nm-tiles {
+  position: absolute;
+  inset: var(--gap);
+}
+
+.nm-tile {
+  --cell: calc((var(--size) - var(--gap) * (var(--n) + 1)) / var(--n));
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 8px;
+  color: #fff;
+  font-size: calc(var(--cell) * 0.42);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  transform: translate(calc(var(--c) * (var(--cell) + var(--gap))), calc(var(--r) * (var(--cell) + var(--gap))));
+  transition: transform 0.11s ease-in-out;
+}
+
+.nm-tile[data-digits="3"] {
+  font-size: calc(var(--cell) * 0.34);
+}
+
+.nm-tile[data-digits="4"] {
+  font-size: calc(var(--cell) * 0.27);
+}
+
+.nm-tile[data-digits="5"],
+.nm-tile[data-digits="6"] {
+  font-size: calc(var(--cell) * 0.22);
+}
+
+.nm-tile span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--tile, #4cc9f0);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.nm-tile.is-new span {
+  animation: nm-appear 0.18s ease 0.09s backwards;
+}
+
+.nm-tile.is-merged span {
+  animation: nm-merge 0.18s ease;
+}
+
+.nm-tile.is-leaving {
+  z-index: 0;
+}
+
+.nm-tile:not(.is-leaving) {
+  z-index: 1;
+}
+
+.nm-tile[data-value="2"] { --tile: #4cc9f0; }
+.nm-tile[data-value="4"] { --tile: #4895ef; }
+.nm-tile[data-value="8"] { --tile: #4361ee; }
+.nm-tile[data-value="16"] { --tile: #7209b7; }
+.nm-tile[data-value="32"] { --tile: #b5179e; }
+.nm-tile[data-value="64"] { --tile: #f72585; }
+.nm-tile[data-value="128"] { --tile: #ff6d00; }
+.nm-tile[data-value="256"] { --tile: #ff9e00; }
+.nm-tile[data-value="512"] { --tile: #ffd60a; color: #2b1600; }
+.nm-tile[data-value="1024"] { --tile: #ff006e; }
+.nm-tile[data-value="2048"] { --tile: #ffd700; color: #2b1600; }
+.nm-tile[data-value="2048"] span { box-shadow: 0 0 24px #ffd700; }
+.nm-tile[data-value="4096"] { --tile: #2ec4b6; }
+.nm-tile[data-value="big"] { --tile: #111; }
+
+.nm-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.nm-btn {
+  font-size: 0.95rem;
+}
+
+.nm-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.nm-status {
+  min-height: 1.4em;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@keyframes nm-appear {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes nm-merge {
+  50% {
+    transform: scale(1.14);
+  }
+}
+
+@keyframes nm-bump {
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
