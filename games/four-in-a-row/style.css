@@ -1,0 +1,197 @@
+/* Four in a Row. Everything is scoped under c4- classes. */
+.c4 {
+  --c4-red: #ff4d4d;
+  --c4-yellow: #ffd23f;
+  --c4-cell: min(calc((90vw - 40px) / 7), calc((100vh - 290px) / 7), 76px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.c4-scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: calc(var(--c4-cell) * 7 + 40px);
+  max-width: 92vw;
+}
+
+.c4-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.c4-score__label {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.c4-score__value {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.c4-score--1 .c4-score__value { color: var(--c4-red); }
+.c4-score--2 .c4-score__value { color: var(--c4-yellow); }
+.c4-score--1.is-turn { border-color: var(--c4-red); }
+.c4-score--2.is-turn { border-color: var(--c4-yellow); }
+
+.c4-board {
+  position: relative;
+  padding-top: calc(var(--c4-cell) + 6px);
+}
+
+.c4-preview {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  width: var(--c4-cell);
+  height: var(--c4-cell);
+  padding: 8%;
+  transform: translateX(calc(var(--col, 3) * (var(--c4-cell) + 2px)));
+  transition: transform 0.12s ease;
+  pointer-events: none;
+}
+
+.c4-preview .c4-disc {
+  opacity: 0.85;
+  animation: none;
+}
+
+.c4-grid {
+  display: grid;
+  grid-template-columns: repeat(7, var(--c4-cell));
+  gap: 2px;
+  padding: 12px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #3567f0, #1c3fb0);
+  box-shadow: 0 10px 40px rgba(28, 63, 176, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.25);
+}
+
+.c4-col {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  transition: background-color 0.15s;
+}
+
+.c4-col:not(:disabled):hover,
+.c4-col:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.c4-col:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 0;
+}
+
+.c4-col:disabled {
+  cursor: default;
+}
+
+.c4-board.is-waiting .c4-col {
+  cursor: progress;
+}
+
+.c4-col.is-full {
+  animation: c4-shake 0.25s ease;
+}
+
+.c4-slot {
+  position: relative;
+  width: var(--c4-cell);
+  height: var(--c4-cell);
+  padding: 8%;
+}
+
+.c4-slot::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: #081638;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+.c4-disc {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: c4-fall calc(0.12s + var(--fall, 1) * 0.035s) cubic-bezier(0.5, 0, 0.75, 0) backwards, c4-bounce 0.18s ease calc(0.12s + var(--fall, 1) * 0.035s);
+}
+
+.c4-disc--1 {
+  background: radial-gradient(circle at 35% 30%, #ff8a8a, var(--c4-red) 55%, #c21d1d);
+  box-shadow: inset 0 0 0 calc(var(--c4-cell) * 0.08) rgba(194, 29, 29, 0.55);
+}
+
+.c4-disc--2 {
+  background: radial-gradient(circle at 35% 30%, #ffe98a, var(--c4-yellow) 55%, #d9a300);
+  box-shadow: inset 0 0 0 calc(var(--c4-cell) * 0.08) rgba(217, 163, 0, 0.55);
+}
+
+.c4-disc.is-win {
+  outline: 4px solid #fff;
+  outline-offset: 2px;
+  animation: c4-glow 0.8s ease-in-out infinite alternate;
+}
+
+.c4-board.has-winner .c4-disc:not(.is-win) {
+  opacity: 0.55;
+}
+
+.c4-status {
+  min-height: 1.6em;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.c4-status[data-player="1"] { color: var(--c4-red); }
+.c4-status[data-player="2"] { color: var(--c4-yellow); }
+
+.c4-next[hidden] {
+  display: inline-flex !important;
+  visibility: hidden;
+}
+
+@keyframes c4-fall {
+  from {
+    transform: translateY(calc(var(--fall, 1) * -1 * (var(--c4-cell) + 2px) - var(--c4-cell)));
+  }
+}
+
+@keyframes c4-bounce {
+  50% {
+    transform: translateY(-6%);
+  }
+}
+
+@keyframes c4-glow {
+  to {
+    box-shadow: 0 0 22px #fff;
+  }
+}
+
+@keyframes c4-shake {
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
