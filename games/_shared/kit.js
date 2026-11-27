@@ -3,6 +3,7 @@
 // ctx.signal so it is removed automatically when the player leaves the game.
 //
 //   kit.css(href)                          load a game stylesheet once (await it in mount)
+//   kit.script(src)                        load a plain-script library once (await it)
 //   kit.screen(root, ...children)          centred DOM layout below the top bar
 //   kit.viewport(root, signal, opts)       canvas with a fixed-size world scaled to fit
 //   kit.loop(signal, step)                 requestAnimationFrame loop, step(dt) in seconds
@@ -37,6 +38,27 @@
       );
     }
     return stylesheets.get(href);
+  }
+
+  const scripts = new Map();
+
+  /** Load a plain (non-module) script once, e.g. a library in games/_shared/vendor/. */
+  function script(src) {
+    if (!scripts.has(src)) {
+      scripts.set(
+        src,
+        new Promise((resolve, reject) => {
+          const el = h('script', { src });
+          el.addEventListener('load', resolve);
+          el.addEventListener('error', () => {
+            scripts.delete(src);
+            reject(new Error(`Could not load ${src}`));
+          });
+          document.head.append(el);
+        }),
+      );
+    }
+    return scripts.get(src);
   }
 
   // ---------------------------------------------------------------- layout
@@ -191,6 +213,7 @@
    * Modal panel inside the game area.
    *   overlay.show({
    *     kicker, title, text,                  // all optional
+   *     content,                              // optional extra element (e.g. a results table)
    *     stats: [['Score', 12], ['Best', 30]],
    *     options: [{ id: 'mode', label: 'Mode', value: 'cpu',
    *                 choices: [{ value: 'cpu', label: 'vs Computer' }, { value: '2p', label: '2 Players' }] }],
@@ -241,12 +264,13 @@
       get visible() {
         return !el.hidden;
       },
-      show({ kicker, title, text, stats, options, buttons = [] }) {
+      show({ kicker, title, text, content, stats, options, buttons = [] }) {
         const values = {};
         const parts = [
           kicker && h('p', { class: 'kit-kicker' }, kicker),
           title && h('h2', { class: 'kit-title' }, title),
           text && h('p', { class: 'kit-text' }, text),
+          content instanceof Node && h('div', { class: 'kit-content' }, content),
           stats &&
             stats.length > 0 &&
             h(
@@ -343,5 +367,5 @@
     return array;
   }
 
-  WG.kit = { css, screen, viewport, loop, keyboard, swipe, onHide, overlay, hud, toast, best, formatTime, randInt, shuffle };
+  WG.kit = { css, script, screen, viewport, loop, keyboard, swipe, onHide, overlay, hud, toast, best, formatTime, randInt, shuffle };
 })(window.WorkGames);

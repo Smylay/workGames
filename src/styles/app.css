@@ -1152,6 +1152,7 @@ code {
   display: flex;
   gap: 1.75rem;
   pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
 }
 
 .kit-hud__item {
@@ -1218,6 +1219,11 @@ code {
   margin: 0 0 1.25rem;
   color: #c8c8c8;
   line-height: 1.5;
+}
+
+.kit-content {
+  max-height: 40vh;
+  overflow: auto;
 }
 
 .kit-stats {

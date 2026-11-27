@@ -92,6 +92,7 @@ WorkGames.registerGame('my-game', {
 | `kit.keyboard(signal, onKey)` / `kit.swipe(el, signal, fn)` | Keyboard and touch input |
 | `kit.screen(root, ...children)` | Centred layout for board/card games built from HTML |
 | `kit.css('games/my-game/style.css')` | Load a stylesheet for your game (`await` it in `mount`) |
+| `kit.script('games/_shared/vendor/x.js')` | Load a plain-script library once (`await` it in `mount`) |
 | `kit.best(storage, key, value)` | Save best scores / times |
 
 `games/_template/game.js` uses most of these.
@@ -102,6 +103,10 @@ The rules exist because the page runs straight from disk:
 - **No network.** Don't use CDN scripts, web fonts or remote images. Put assets in the game's folder and reference them as `games/my-game/sprite.png`.
 - **No `fetch()` of local files.** It is blocked on `file://`. Put data in JS instead, e.g. `const LEVELS = [...]`.
 - Keep game state inside `mount()`. The script loads once, but `mount` runs on every play.
+
+## Third-party code
+
+`games/_shared/vendor/three.min.js` is [three.js](https://threejs.org) r149 (MIT licence, see `three.LICENSE.txt`), used by Apex Circuit for 3D. It is the last release with a plain-script build, so it loads from `file://`. It's only loaded when a 3D game starts.
 
 ## Saved data
 
