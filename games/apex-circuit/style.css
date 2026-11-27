@@ -1,0 +1,239 @@
+/* Apex Circuit. Everything is scoped under .ac / ac- classes. */
+.ac {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ac-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ac-cockpit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ac-cockpit svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Speed / gear / rev bar. Sits in the steering-wheel opening in cockpit view. */
+.ac-cluster {
+  position: absolute;
+  left: 50%;
+  bottom: max(14px, 4.5vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 190px;
+  padding: 10px 18px 8px;
+  border-radius: 12px;
+  background: rgba(10, 10, 12, 0.72);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.ac[data-view="cockpit"] .ac-cluster {
+  background: rgba(6, 18, 24, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(120, 220, 255, 0.15);
+}
+
+.ac-rpm {
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.ac-rpm__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #46d369, #ffd166 70%, #ff4d4d);
+}
+
+.ac-rpm__fill.is-red {
+  animation: ac-blink 0.12s steps(2) infinite;
+}
+
+.ac-readout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ac-gear {
+  min-width: 1.4em;
+  padding: 2px 6px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.ac-speedbox {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.ac-speed {
+  min-width: 2.4em;
+  font-size: 2.6rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-align: right;
+}
+
+.ac-unit {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ac-minimap {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  width: clamp(120px, 15vw, 200px);
+  height: clamp(120px, 15vw, 200px);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.ac[data-view="cockpit"] .ac-minimap {
+  bottom: auto;
+  top: 70px;
+}
+
+.ac-lights {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  display: flex;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #111;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  transform: translateX(-50%);
+}
+
+.ac-lights span {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #2b2b2b;
+  transition: background-color 0.1s, box-shadow 0.1s;
+}
+
+.ac-lights span.is-red {
+  background: #ff2a2a;
+  box-shadow: 0 0 22px #ff2a2a;
+}
+
+.ac-lights span.is-green {
+  background: #2bff6a;
+  box-shadow: 0 0 22px #2bff6a;
+}
+
+.ac-banner {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  padding: 0.3em 0.9em;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.ac-help {
+  position: absolute;
+  left: 50%;
+  top: 64px;
+  padding: 0.4em 0.9em;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ddd;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: opacity 0.6s;
+  pointer-events: none;
+}
+
+.ac-help.is-hidden {
+  opacity: 0;
+}
+
+.ac-results {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.ac-results li {
+  display: grid;
+  grid-template-columns: 1.6em 14px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ac-results li.is-player {
+  background: rgba(229, 9, 20, 0.25);
+  font-weight: 700;
+}
+
+.ac-results__pos {
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.ac-results__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.ac-results__time {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes ac-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 700px) {
+  .ac-help {
+    display: none;
+  }
+}

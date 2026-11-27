@@ -33,6 +33,20 @@ WorkGames.genres = [
 
 WorkGames.games = [
   {
+    id: 'apex-circuit',
+    title: 'Apex Circuit',
+    description:
+      'Strap in for a six-car race around a hilly 2.7 km circuit. Brake late, hit the apex and drift the hairpin, from the cockpit, the hood or behind the car.',
+    genre: 'arcade',
+    tags: ['Racing', '3D'],
+    players: '1 Player',
+    playtime: '3–8 min',
+    controls: 'Arrow keys or WASD, Space handbrake, C camera, R reset',
+    isNew: true,
+    featured: true,
+    trending: true,
+  },
+  {
     id: 'space-rocks',
     title: 'Space Rocks',
     description:
@@ -43,7 +57,6 @@ WorkGames.games = [
     playtime: '3–10 min',
     controls: 'Arrow keys to fly, Space to fire',
     isNew: true,
-    featured: true,
     trending: true,
   },
   {
