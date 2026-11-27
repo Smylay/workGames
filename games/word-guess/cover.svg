@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<defs><radialGradient id="bg" cx="50%" cy="50%" r="80%"><stop offset="0" stop-color="#1f2d55"/><stop offset="1" stop-color="#0a0f20"/></radialGradient>
+     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient></defs>
+<rect width="640" height="360" fill="url(#bg)"/>
+     <g opacity=".16" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="40" fill="#9fb3ff" text-anchor="middle">
+       <text x="90" y="110" transform="rotate(-10 90 110)">?</text>
+       <text x="560" y="120" transform="rotate(12 560 120)">A</text>
+       <text x="80" y="280" transform="rotate(8 80 280)">E</text>
+       <text x="556" y="290" transform="rotate(-6 556 290)">?</text>
+     </g>
+     <rect x="191" y="51" width="46" height="46" rx="5" fill="#f59e0b"/>
+        <text x="214" y="74" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">S</text><rect x="244" y="51" width="46" height="46" rx="5" fill="#3a3f58"/>
+        <text x="267" y="74" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">L</text><rect x="297" y="51" width="46" height="46" rx="5" fill="#f59e0b"/>
+        <text x="320" y="74" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">A</text><rect x="350" y="51" width="46" height="46" rx="5" fill="#f59e0b"/>
+        <text x="373" y="74" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">T</text><rect x="403" y="51" width="46" height="46" rx="5" fill="#f59e0b"/>
+        <text x="426" y="74" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">E</text><rect x="191" y="104" width="46" height="46" rx="5" fill="#f59e0b"/>
+        <text x="214" y="127" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">M</text><rect x="244" y="104" width="46" height="46" rx="5" fill="#f59e0b"/>
+        <text x="267" y="127" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">E</text><rect x="297" y="104" width="46" height="46" rx="5" fill="#f59e0b"/>
+        <text x="320" y="127" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">A</text><rect x="350" y="104" width="46" height="46" rx="5" fill="#3a3f58"/>
+        <text x="373" y="127" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">N</text><rect x="403" y="104" width="46" height="46" rx="5" fill="#14b8a6"/>
+        <text x="426" y="127" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">S</text><rect x="191" y="157" width="46" height="46" rx="5" fill="#14b8a6" filter="url(#glow)"/>
+        <text x="214" y="180" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">G</text><rect x="244" y="157" width="46" height="46" rx="5" fill="#14b8a6" filter="url(#glow)"/>
+        <text x="267" y="180" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">A</text><rect x="297" y="157" width="46" height="46" rx="5" fill="#14b8a6" filter="url(#glow)"/>
+        <text x="320" y="180" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">M</text><rect x="350" y="157" width="46" height="46" rx="5" fill="#14b8a6" filter="url(#glow)"/>
+        <text x="373" y="180" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">E</text><rect x="403" y="157" width="46" height="46" rx="5" fill="#14b8a6" filter="url(#glow)"/>
+        <text x="426" y="180" dy=".36em" text-anchor="middle" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#fff">S</text><rect x="192" y="211" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="245" y="211" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="298" y="211" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="351" y="211" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="404" y="211" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="192" y="264" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="245" y="264" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="298" y="264" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="351" y="264" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/><rect x="404" y="264" width="44" height="44" rx="5" fill="none" stroke="#3a4466" stroke-width="2"/>
+<rect width="640" height="360" fill="url(#vig)"/>
+</svg>
