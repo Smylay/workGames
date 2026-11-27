@@ -1119,6 +1119,207 @@ code {
   line-height: 1.6;
 }
 
+/* ---------- game kit (games/_shared/kit.js) ---------- */
+.kit-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 64px 16px 24px;
+  overflow: auto;
+  background: radial-gradient(ellipse at 50% 30%, #1f1f1f 0%, #0b0b0b 70%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.kit-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.kit-hud {
+  position: absolute;
+  top: 10px;
+  right: 1.5rem;
+  z-index: 11;
+  display: flex;
+  gap: 1.75rem;
+  pointer-events: none;
+}
+
+.kit-hud__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.1;
+}
+
+.kit-hud__label {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kit-hud__value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.kit-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 64px 16px 24px;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(4px);
+  animation: fade-in 0.2s ease;
+}
+
+.kit-panel {
+  width: min(440px, 100%);
+  padding: 2rem 2rem 1.75rem;
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  animation: pop-in 0.2s ease;
+}
+
+.kit-kicker {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.kit-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.kit-text {
+  margin: 0 0 1.25rem;
+  color: #c8c8c8;
+  line-height: 1.5;
+}
+
+.kit-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0 0 1.5rem;
+}
+
+.kit-stat dt {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kit-stat dd {
+  margin: 0.1rem 0 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.kit-options {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+
+.kit-option {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.kit-option__label {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kit-seg {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.kit-seg__btn {
+  padding: 0.45em 1em;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.kit-seg__btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.kit-seg__btn[aria-checked="true"] {
+  border-color: #fff;
+  background: #fff;
+  color: #000;
+}
+
+.kit-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.kit-btn {
+  font-size: 1rem;
+  padding: 0.5em 1.4em;
+}
+
+.kit-toast {
+  position: absolute;
+  top: 72px;
+  left: 50%;
+  z-index: 30;
+  padding: 0.6em 1.1em;
+  border-radius: var(--radius);
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  transform: translateX(-50%);
+  animation: fade-in 0.15s ease;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.kit-toast.is-leaving {
+  opacity: 0;
+}
+
 /* ---------- misc ---------- */
 img.is-missing {
   visibility: hidden;
