@@ -1,0 +1,88 @@
+/* Sliding Puzzle. Everything is scoped under sp- classes. */
+.sp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sp-board {
+  --gap: clamp(5px, 1vmin, 9px);
+  --size: min(86vw, calc(100vh - 170px), 560px);
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  padding: var(--gap);
+  border: 2px solid #2aa39b;
+  border-radius: 16px;
+  background: #062a2d;
+  box-shadow: 0 0 40px rgba(20, 122, 122, 0.35);
+  touch-action: none;
+}
+
+.sp-tile {
+  --cell: calc((var(--size) - 4px - var(--gap) * (var(--n) + 1)) / var(--n));
+  position: absolute;
+  top: var(--gap);
+  left: var(--gap);
+  display: grid;
+  place-items: center;
+  width: var(--cell);
+  height: var(--cell);
+  padding: 0;
+  border: 0;
+  border-radius: calc(var(--cell) * 0.14);
+  background: linear-gradient(180deg, #f2fffd, #c9f2ec);
+  box-shadow: 0 4px 0 #7cc7bd, 0 6px 12px rgba(0, 0, 0, 0.35);
+  color: #0b4f4f;
+  font-size: calc(var(--cell) * 0.4);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  transform: translate(calc(var(--col) * (var(--cell) + var(--gap))), calc(var(--row) * (var(--cell) + var(--gap))));
+  transition: transform 0.12s ease-out, background 0.2s;
+}
+
+.sp-board.no-anim .sp-tile {
+  transition: none;
+}
+
+.sp-tile:hover {
+  background: linear-gradient(180deg, #ffffff, #d9f7f2);
+}
+
+.sp-tile.is-home {
+  background: linear-gradient(180deg, #ffe9a8, #ffd166);
+  box-shadow: 0 4px 0 #c99a2e, 0 6px 12px rgba(0, 0, 0, 0.35);
+  color: #5c3b00;
+}
+
+.sp-tile:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.sp-tile.is-stuck span {
+  animation: sp-nudge 0.25s ease;
+}
+
+.sp-board.is-solved {
+  border-color: var(--positive);
+  box-shadow: 0 0 50px rgba(70, 211, 105, 0.5);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.sp-hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+@keyframes sp-nudge {
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
