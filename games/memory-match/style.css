@@ -1,0 +1,106 @@
+/* Memory Match. Everything is scoped under mm- classes. */
+.mm-board {
+  --gap: clamp(6px, 1.2vmin, 12px);
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: var(--gap);
+  width: min(94vw, 820px, calc((100vh - 120px) * 0.75 * var(--cols) / var(--rows)));
+  perspective: 1200px;
+}
+
+.mm-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+}
+
+.mm-card:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.mm-card__inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.35s ease;
+}
+
+.mm-card.is-up .mm-card__inner {
+  transform: rotateY(180deg);
+}
+
+.mm-card__face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.mm-card__back {
+  border: 2px solid rgba(224, 170, 255, 0.45);
+  background: repeating-linear-gradient(45deg, #240b4d 0 7px, #3c1a78 7px 12px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.mm-card__back::after {
+  content: "";
+  width: 24%;
+  aspect-ratio: 1;
+  border: 2px solid rgba(224, 170, 255, 0.7);
+  border-radius: 3px;
+  background: rgba(224, 170, 255, 0.2);
+  transform: rotate(45deg);
+}
+
+.mm-card:not(.is-up):hover .mm-card__back {
+  border-color: #e0aaff;
+}
+
+.mm-card__front {
+  border: 3px solid #ffd60a;
+  background: #fff8e7;
+  transform: rotateY(180deg);
+}
+
+.mm-card__front svg {
+  width: 62%;
+  height: 62%;
+}
+
+.mm-card.is-matched .mm-card__front {
+  border-color: var(--positive);
+  box-shadow: 0 0 18px rgba(70, 211, 105, 0.55);
+  animation: mm-pop 0.35s ease 0.3s;
+}
+
+.mm-card.is-matched {
+  cursor: default;
+}
+
+.mm-card.is-wrong .mm-card__front {
+  border-color: #ff4d6d;
+  animation: mm-shake 0.35s ease 0.3s;
+}
+
+@keyframes mm-pop {
+  50% {
+    transform: rotateY(180deg) scale(1.08);
+  }
+}
+
+@keyframes mm-shake {
+  25% {
+    transform: rotateY(180deg) translateX(-5px);
+  }
+  75% {
+    transform: rotateY(180deg) translateX(5px);
+  }
+}
